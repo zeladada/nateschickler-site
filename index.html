@@ -173,19 +173,31 @@ void main() {
 <script id="fragmentShader" type="x-shader/x-fragment">
 
 void main() {
-  gl_FragColor = vec4(gl_FragCoord.x / gl_FragCoord.y / gl_FragCoord.y * 200.,  // R
-                      (gl_FragCoord.x + 1000.) / gl_FragCoord.y / 10.,  // G
+  gl_FragColor = vec4(gl_FragCoord.x / gl_FragCoord.y / gl_FragCoord.y * 50.,  // R
+                      (gl_FragCoord.x + 250.) / gl_FragCoord.y / 10.,  // G
                       gl_FragCoord.x / gl_FragCoord.y / 1.2,  // B
                       1.0); // A
 }
 
 </script>
 
+<script id="surfaceVertexShader" type="x-shader/x-vertex">
+			//attribute vec3 position;
+			attribute vec2 surfacePosAttrib;
+			varying vec2 surfacePosition;
+			void main() {
+				surfacePosition = surfacePosAttrib;
+				gl_Position = vec4( position, 1.0 );
+			}
+</script>
 
-<script src="lib/jquery-3.2.1.min.js"></script>
-<script>window.jQuery || document.write('<script src="lib/jquery.min.js"><\/script>')</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="lib/jquery-3.2.1.min.js"><\/script>');
+</script>
 <script src="lib/bootstrap.min.js"></script>
 <script src="lib/three.min.js"></script>
+<script src="lib/stats.min.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>

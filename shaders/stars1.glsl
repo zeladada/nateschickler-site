@@ -1,5 +1,9 @@
+//renderer directives for performace and/or visuals
+//renderScale: 0.25
+//framerate: 60
+
 #ifdef GL_ES
-precision mediump float;
+precision lowp float;
 #endif
 
 uniform float time;

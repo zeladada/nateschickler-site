@@ -1,8 +1,10 @@
-#ifdef GL_ES
-precision highp float;
-#endif
+//renderer directives for performace and/or visuals
+//renderScale: 0.20
+//framerate: 30
 
-#extension GL_OES_standard_derivatives : enable
+#ifdef GL_ES
+precision lowp float;
+#endif
 
 uniform float time;
 uniform vec2 mouse;

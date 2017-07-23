@@ -1,5 +1,9 @@
+//renderer directives for performace and/or visuals
+//renderScale: 0.25
+//framerate: 60
+
 #ifdef GL_ES
-precision mediump float;
+precision lowp float;
 #endif
 
 uniform float time;
@@ -11,8 +15,10 @@ const vec3 totalSkyLight = vec3(0.3, 0.5, 1.0);
 
 vec3 getSky(vec2 uv){
 
-	vec2 sunPos = vec2(0.5, cos(time * 0.15
-				  ));
+//	vec2 sunPos = vec2(0.5, cos(time * 0.15
+//				  ));
+
+    vec2 sunPos = vec2(mouse.x, cos(time * 0.2)*0.5 + mouse.y/2.);
 
 	float scatterMult = distance(uv, clamp(sunPos, -1.0, 1.0));
 	float sun = 1.0 - smoothstep(0.01, 0.011, scatterMult);

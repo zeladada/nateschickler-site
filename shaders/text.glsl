@@ -1,3 +1,7 @@
+//renderer directives for performace and/or visuals
+//renderScale: 0.25
+//framerate: 20
+
 #ifdef GL_ES
 precision highp float;
 #endif
@@ -186,7 +190,7 @@ vec3 Text(vec2 uv)
 {
     	vec3 col = vec3(0.0);
 
-    	vec2 center_pos = vec2(res.x/2.0 - STRWIDTH(20.0)/2.0,res.y/2.0 - STRHEIGHT(1.0)/2.0);
+    	vec2 center_pos = vec2(res.x/4.0 - STRWIDTH(24.0)/2.0,res.y/4.0 - STRHEIGHT(1.0)/2.0);
 
     	BEGIN_TEXT(center_pos.x - 42.0,center_pos.y)
     	HEX(0xFF00DD) RGB(0,1,0)_ _ _N _a _t _e _  _S _c _h _i _c _k _l _e _r _ _dsh _ _g _i _t _h _u _b _lar RGB(1,0,0) _z RGB(1,.5,0) _e RGB(1,1,0) _l RGB(0.5,1,0) _a RGB(0,1,0) _d RGB(0,0.5,1) _a RGB(0.5,0,1) _d RGB(1,0,0) _a;

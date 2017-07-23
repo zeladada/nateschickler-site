@@ -1,22 +1,24 @@
-#ifdef GL_ES
-precision mediump float;
-#endif
+//renderer directives for performace and/or visuals
+//renderScale: 0.25
+//framerate: 30
 
-#extension GL_OES_standard_derivatives : enable
+#ifdef GL_ES
+precision lowp float;
+#endif
 
 uniform float time;
 //uniform vec2 mouse;
 uniform vec2 resolution;
 
-const float cloudscale = 1.1;
+const float cloudscale = 4.0;
 const float speed = 0.01;
 const float clouddark = 0.5;
 const float cloudlight = 0.3;
 const float cloudcover = 0.2;
 const float cloudalpha = 8.0;
 const float skytint = 0.5;
-const vec3 skycolour1 = vec3(0.2, 0.4, 0.6);
-const vec3 skycolour2 = vec3(0.4, 0.7, 1.0);
+const vec3 skycolour1 = vec3(0.2, 0.3, 0.6);
+const vec3 skycolour2 = vec3(0.35, 0.60, 1.0);
 
 const mat2 m = mat2( 1.6,  1.2, -1.2,  1.6 );
 
@@ -87,7 +89,7 @@ void main() {
 
     //noise colour
     float c = 0.0;
-   localTime = time * speed * 2.0;
+    localTime = time * speed * 2.0;
     uv = p*vec2(resolution.x/resolution.y,1.0);
 	uv *= cloudscale*2.0;
     uv -= q - localTime;
@@ -113,7 +115,7 @@ void main() {
 
     c += c1;
 
-    vec3 skycolour = mix(skycolour2, skycolour1, p.y);
+    vec3 skycolour = mix(skycolour2, skycolour1, p.y*3.0);
     vec3 cloudcolour = vec3(1.1, 1.1, 0.9) * clamp((clouddark + cloudlight*c), 0.0, 1.0);
 
     f = cloudcover + cloudalpha*f*r;

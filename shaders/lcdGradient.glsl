@@ -1,8 +1,10 @@
-#ifdef GL_ES
-precision mediump float;
-#endif
+//renderer directives for performace and/or visuals
+//renderScale: 0.25
+//framerate: 30
 
-#extension GL_OES_standard_derivatives : enable
+#ifdef GL_ES
+precision lowp float;
+#endif
 
 uniform float time;
 uniform vec2 mouse;
@@ -20,7 +22,8 @@ void main(void){
 	vec3 o=vec3(0.);
 	for(int i=0;i<3;i++){
 		float fi=float(i);
-		o[i]=drawing(floor(uv*div)/div)[i]*pow(abs(sin((fract(uv.x*div.x)+(fi/3.))*PI)),0.5);//(fract(uv.x*div.x)>=(fi/3.)&&fract(uv.x*div.x)<((fi+1.)/3.)?1.:0.);
+		//(fract(uv.x*div.x)>=(fi/3.)&&fract(uv.x*div.x)<((fi+1.)/3.)?1.:0.);
+		o[i]=drawing(floor(uv*div)/div)[i]*pow(abs(sin((fract(uv.x*div.x)+(fi/3.))*PI)),0.5);
 	}
 	o*=mix(pow(sin(fract(uv.y*div.y)*PI),0.4),1.,0.9);
 	gl_FragColor=vec4(o*2.0,1.);

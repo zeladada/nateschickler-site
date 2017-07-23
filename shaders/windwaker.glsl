@@ -1,11 +1,10 @@
+//renderer directives for performace and/or visuals
+//renderScale: 0.25
+//framerate: 30
+
 #ifdef GL_ES
-precision mediump float;
+precision lowp float;
 #endif
-
-#define iGlobalTime (time+startRandom*1000.)
-#define iResolution resolution
-
-#extension GL_OES_standard_derivatives : enable
 
 // "Wind Waker Ocean" by @Polyflare (29/1/15)
 // License: Creative Commons Attribution 4.0 International
@@ -169,12 +168,12 @@ void main(void) {
 
             // Camera stuff
             vec2 uv = gl_FragCoord.xy;
-		uv += offset.xy;
-		uv /= resolution.xy;
+            uv += offset.xy;
+            uv /= resolution.xy;
 
-            vec3 cpos = vec3(0.0, 4.0, 10.0); // Camera position
+            vec3 cpos = vec3(10.0, 5.0, 10.0); // Camera position
             vec3 cdir = pixtoray(uv);
-            cdir = quatmul( vec4(-0.19867, 0.0, 0.0, 0.980067), cdir);
+            cdir = quatmul( vec4(0.05, 0.0, 0.0, 1.0), cdir);
 
             // Rotating camera
             float cost = cos(time * -0.05);
