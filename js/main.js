@@ -3,27 +3,26 @@ var geometry, material, mesh;
 var container;
 var uniforms;
 var stats;
+var id;
 
 var shaderPath = 'shaders/';
 var shaderFiles = [
+    'fastWater.glsl',
+    'lcdGradient.glsl',
     'causticsWater.glsl',
     'clouds.glsl',
-    'fastWater.glsl',
-    'fractal3-Kaleidoscope.glsl',
-    'ring.glsl',
-    'ink.glsl',
-    'lcdGradient.glsl',
-    'powGradient.glsl',
-    'stars1.glsl',
-    'sunset.glsl',
-    'text.glsl',
-    'windwaker.glsl',
     'fractal3D.glsl',
-    'perlin.glsl'
+    'ring.glsl',                //default
+    'ink.glsl',
+    'fractal3-Kaleidoscope.glsl',
+    'stars1.glsl',
+    'windwaker.glsl',
+    'perlin.glsl',
+    'text.glsl'
 ];
 
 //var shaderFileIndex = Math.floor(Math.random() * shaderFiles.length);
-var shaderFileIndex = 4; //4
+var shaderFileIndex = 5; //5
 var shaderFile = shaderFiles[shaderFileIndex];
 
 var startTime = Date.now();
@@ -31,10 +30,14 @@ var isMobileDevice = ((typeof window.orientation !== "undefined") || (navigator.
 var renderScale = 1/4;
 var framerate = 60;
 var renderOnMouseMove = false;
+var paused = false;
+var pausedTime;
 
-var leftKey = 37, leftA =65, rightKey = 39, rightD = 68;
+var leftKey = 37, leftA = 65, rightKey = 39, rightD = 68, space = 32;
 
 function init() {
+    stats = new Stats();
+    stats.showPanel(1);
 
     container = document.getElementById( 'top-animation' );
 
@@ -48,6 +51,11 @@ function init() {
     if (isMobileDevice) {
         console.log("running cube animation");
         window.addEventListener('resize', onWindowResizeMobile, false);
+
+        $("#top-animation").click(function(){
+            onButtonPress('pause');
+        });
+
         initCube(container);
     } else {
         console.log("loading shader");
@@ -55,16 +63,32 @@ function init() {
         container.addEventListener('mousemove', onMouseMove, false);
         window.addEventListener('keydown', onKeyDown, false);
         initShaders(container);
+
+        $("#welcome").append(
+            '<div id="display" class="clearfix">'
+            + '<a id="leftButton" href="#" class="shaderControls btn btn-md btn-default"><span>Prev</span></a>'
+            + '<a id="rightButton" href="#" class="shaderControls btn btn-md btn-default"><span>Next</span></a>'
+            + '<h4>Use the above buttons or arrow keys to load a new pixel shader.<br>Press space to pause.</h4>'
+            +'</div>'
+        );
+
+        $("#leftButton").click(function () {
+            onButtonPress('left');
+        });
+        $("#rightButton").click(function () {
+            onButtonPress('right');
+        });
+
+        console.log("loaded " + shaderFile);
     }
 
-    console.log("loaded " + shaderFile);
-
     requestAnimationFrame( animate );
+
+    container.appendChild(stats.dom);
 }
 
 function initShaders() {
-    stats = new Stats();
-    //stats.showPanel(0);
+
 
     camera = new THREE.Camera();
     camera.position.z = 1;
@@ -97,7 +121,6 @@ function initShaders() {
     renderer.setPixelRatio( window.devicePixelRatio * renderScale );
     renderer.setSize(window.innerWidth, window.innerHeight);
     container.appendChild( renderer.domElement );
-    //container.appendChild(stats.dom);
 }
 
 function initCube() {
@@ -123,7 +146,9 @@ function animate(time) {
 
     setTimeout( function() {
 
-        requestAnimationFrame( animate );
+        if(!paused) {
+            id = requestAnimationFrame( animate );
+        }
 
     }, 1000 / framerate );
 
@@ -174,13 +199,36 @@ function onMouseMove(event) {
 
 function onKeyDown(event) {
     if(event.keyCode === leftA || event.keyCode === leftKey) {
-        shaderFileIndex = ((shaderFileIndex - 1) < 0) ? (shaderFiles.length - 1) : (shaderFileIndex - 1);
-        shaderFile = shaderFiles[shaderFileIndex];
-        reloadShaders();
+        onButtonPress('left');
     } else if (event.keyCode === rightD || event.keyCode === rightKey) {
-        shaderFileIndex = (++shaderFileIndex)%shaderFiles.length;
-        shaderFile = shaderFiles[shaderFileIndex];
-        reloadShaders();
+        onButtonPress('right');
+    } else if (event.keyCode === space) {
+        event.preventDefault();
+        onButtonPress('pause');
+    }
+}
+
+function onButtonPress(arg) {
+    switch (arg) {
+        case 'left':
+            shaderFileIndex = ((shaderFileIndex - 1) < 0) ? (shaderFiles.length - 1) : (shaderFileIndex - 1);
+            shaderFile = shaderFiles[shaderFileIndex];
+            reloadShaders();
+            break;
+        case 'right':
+            shaderFileIndex = (++shaderFileIndex)%shaderFiles.length;
+            shaderFile = shaderFiles[shaderFileIndex];
+            reloadShaders();
+            break;
+        case 'pause':
+            if(paused) { //unpausing now, adjust start time for seamless rendering
+                startTime = startTime + (Date.now() - pausedTime);
+            } else { //pausing now, record when
+                pausedTime = Date.now();
+            }
+
+            paused = !paused;
+            requestAnimationFrame( animate );
     }
 }
 
@@ -202,8 +250,7 @@ function reloadShaders() {
     material = new THREE.ShaderMaterial( {
         uniforms: uniforms,
         vertexShader: document.getElementById( 'surfaceVertexShader' ).textContent,
-        fragmentShader: shaderText,
-
+        fragmentShader: shaderText
     } );
 
     mesh = new THREE.Mesh( geometry, material );
@@ -211,6 +258,8 @@ function reloadShaders() {
 
     renderer.setPixelRatio( window.devicePixelRatio * renderScale );
     renderer.setSize(window.innerWidth, window.innerHeight);
+
+    render();
 }
 
 function getRendererDirectives(shaderText) {
