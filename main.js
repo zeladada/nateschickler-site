@@ -30,14 +30,14 @@ var isMobileDevice = ((typeof window.orientation !== "undefined") || (navigator.
 var renderScale = 1 / 4;
 var framerate = 60;
 var renderOnMouseMove = false;
-var paused = true;
+var paused = false;
 var pausedTime;
 
 var leftKey = 37, leftA = 65, rightKey = 39, rightD = 68, space = 32;
 
 function init() {
     stats = new Stats();
-    stats.showPanel(1);
+    stats.showPanel(0);
 
     container = document.getElementById('top-animation');
 
