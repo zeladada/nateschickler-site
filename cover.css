@@ -251,12 +251,12 @@ hr {
 
 .reveal-text,
 .reveal-text::after {
-    -webkit-animation-delay: 0.5s;
-    animation-delay: 0.5s;
+    -webkit-animation-delay: 750ms;
+    animation-delay: 750ms;
     -webkit-animation-iteration-count: 1;
     animation-iteration-count: 1;
-    -webkit-animation-duration: 800ms;
-    animation-duration: 800ms;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
     -webkit-animation-fill-mode: both;
     animation-fill-mode: both;
     -webkit-animation-timing-function: cubic-bezier(0.0, 0.0, 0.2, 1);

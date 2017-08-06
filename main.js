@@ -26,12 +26,13 @@ var shaderFileIndex = 5; //5
 var shaderFile = shaderFiles[shaderFileIndex];
 
 var startTime = Date.now();
-var isMobileDevice = ((typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1));
+var isMobileDevice = !((typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1));
 var renderScale = 1 / 4;
 var framerate = 60;
 var renderOnMouseMove = false;
 var paused = false;
 var pausedTime;
+var windowHeight = window.innerHeight;
 
 var leftKey = 37, leftA = 65, rightKey = 39, rightD = 68, space = 32;
 
@@ -43,18 +44,21 @@ function init() {
 
     uniforms = {
         time: {value: 1.0},
-        resolution: {value: new THREE.Vector2(window.innerWidth, window.innerHeight)},
+        resolution: {value: new THREE.Vector2(window.innerWidth, windowHeight)},
         mouse: {value: new THREE.Vector2()},
         backbuffer: {value: 0}
     };
 
     if (isMobileDevice) {
+        windowHeight = window.innerHeight/2;
+        uniforms.resolution.value.y = windowHeight;
+
         console.log("running cube animation");
         window.addEventListener('resize', onWindowResizeMobile, false);
 
-        $("#top-animation").click(function () {
-            onButtonPress('pause');
-        });
+        $("#welcome").append(
+            '<p id="display">View this page on a non-mobile device to see better animations!.</p>'
+        );
 
         initCube(container);
     } else {
@@ -69,10 +73,13 @@ function init() {
             + '<a id="leftButton" href="#" class="shaderControls btn btn-md btn-default"><span>Prev</span></a>'
             + '<a id="rightButton" href="#" class="shaderControls btn btn-md btn-default"><span>Next</span></a>'
             + '<h4>Use the above buttons or arrow keys to load a new pixel shader.'
-            + '<br>Press space to pause. Some shaders have mouse position input.</h4>'
+            + '<br>Press space or click the animation to pause. Some shaders have mouse position input.</h4>'
             + '</div>'
         );
 
+        $("#top-animation").click(function () {
+            onButtonPress('pause');
+        });
         $("#leftButton").click(function () {
             onButtonPress('left');
         });
@@ -120,13 +127,13 @@ function initShaders() {
 
     renderer = new THREE.WebGLRenderer();
     renderer.setPixelRatio(window.devicePixelRatio * renderScale);
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(window.innerWidth, windowHeight);
     container.appendChild(renderer.domElement);
 }
 
 function initCube() {
-    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 10);
-    camera.position.z = 3;
+    camera = new THREE.PerspectiveCamera(75, window.innerWidth / windowHeight, 0.1, 10);
+    camera.position.z = 2;
 
     scene = new THREE.Scene();
 
@@ -137,7 +144,7 @@ function initCube() {
     scene.add(mesh);
 
     renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(window.innerWidth, windowHeight);
     renderer.setPixelRatio(window.devicePixelRatio * 0.5);
     container.appendChild(renderer.domElement);
 }
@@ -172,17 +179,17 @@ function render() {
 
 function onWindowResizeMobile() {
 
-    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.aspect = window.innerWidth / windowHeight;
     camera.updateProjectionMatrix();
 
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(window.innerWidth, windowHeight);
 }
 
 function onWindowResize() {
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(window.innerWidth, windowHeight);
 
     uniforms.resolution.value.x = window.innerWidth;
-    uniforms.resolution.value.y = window.innerHeight;
+    uniforms.resolution.value.y = windowHeight;
 
     render();
 }
@@ -192,7 +199,7 @@ function onMouseMove(event) {
     event.preventDefault();
     uniforms.mouse.value.x = (event.clientX / window.innerWidth) / 2;
     //console.log("mouse x: " + uniforms.mouse.value.x);
-    uniforms.mouse.value.y = (-(event.clientY / window.innerHeight) + 1) / 2;
+    uniforms.mouse.value.y = (-(event.clientY / windowHeight) + 1) / 2;
     //console.log("mouse y: " + uniforms.mouse.value.y);
 
     if (renderOnMouseMove) {
@@ -260,7 +267,7 @@ function reloadShaders() {
     scene.add(mesh);
 
     renderer.setPixelRatio(window.devicePixelRatio * renderScale);
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(window.innerWidth, windowHeight);
 
     render();
 }
