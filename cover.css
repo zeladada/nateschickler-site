@@ -27,7 +27,6 @@ a:hover {
 html,
 body {
     height: 100%;
-    background-color: #181818;
     overflow-x: hidden;
 }
 body {
@@ -51,7 +50,6 @@ body {
 .cover-container {
     margin-right: auto;
     margin-left: auto;
-    z-index: 3;
 }
 
 /* Padding for spacing */
@@ -59,18 +57,13 @@ body {
     padding: 30px;
 }
 
-#scrolling-header {
-    z-index: 4;
-}
-
-#top-animation {
-    z-index: 1;
+#content {
+    background-color: #181818;
 }
 
 #display {
     position: relative;
     text-align: center;
-    z-index: 0;
 }
 
 .btn-default {
@@ -81,6 +74,10 @@ body {
 
     cursor: pointer;
     margin: 1px;
+}
+
+hr {
+    width: 20%;
 }
 
 .shaderControls {

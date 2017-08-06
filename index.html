@@ -24,7 +24,7 @@
 
 <div class="site-wrapper">
 
-    <div class="site-wrapper-inner">
+    <div class="site-wrapper-inner" id="content">
 
         <div id="welcome">
 
@@ -43,7 +43,6 @@
                 </div>
             </div>
 
-
             <div id="top-animation">
 
             </div>
@@ -59,6 +58,8 @@
                     and Business. This is my personal website.</p>
                 <p class="lead">I am currently available for hire.</p>
             </div>
+
+            <br><hr>
 
             <div class="container-fluid">
                 <div class="row align-items-start justify-content-center">
@@ -99,7 +100,13 @@
                 <div class="row align-items-start justify-content-center">
                     <form id="contact-me" role="form" class="col-xs-6.col-lg-4 go-bottom">
                         <h2>Contact Me</h2>
-                        <p>Send me an email via the form below or click here to copy my email address to your clipboard.</p>
+                        <p id="p1" style="display: none">njs59@cornell.edu</p>
+                        <p>Send me an email via the form below or click the button to copy my email address to your clipboard.</p>
+                        <button class="btn btn-default" onclick="copyToClipboard('#p1')">Copy Email Address to Clipboard</button>
+                        <br>- or -<br>
+                        <a class="btn btn-default" href="mailto:njs59@cornell.edu">Open in email cient</a>
+                        <br><br>
+                        <hr>
                         <div class="form-group">
                             <input id="name" type="text" class="form-control" required>
                             <label for="name">Name</label>
@@ -129,7 +136,6 @@
             </div>
         </div>
     </div>
-
 </div>
 
 <!-- Bootstrap core JavaScript
@@ -156,17 +162,6 @@ void main() {
 
 </script>
 
-<script id="surfaceVertexShader" type="x-shader/x-vertex">
-			//attribute vec3 position;
-			attribute vec2 surfacePosAttrib;
-			varying vec2 surfacePosition;
-			void main() {
-				surfacePosition = surfacePosAttrib;
-				gl_Position = vec4( position, 1.0 );
-			}
-
-</script>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
     window.jQuery || document.write('<script src="lib/jquery-3.2.1.min.js"><\/script>');
@@ -175,15 +170,14 @@ void main() {
 <script src="lib/three.min.js"></script>
 <script src="lib/stats.min.js"></script>
 <script src="main.js"></script>
-
 <script>
-    $(function () {
-        $('.scroll-down').click(function () {
-            $('html, body').animate({scrollTop: $('section.ok').offset().top}, 'slow');
-            return false;
-        });
-    });
+    function copyToClipboard(element) {
+        var $temp = $("<input>");
+        $("body").append($temp);
+        $temp.val($(element).text()).select();
+        document.execCommand("copy");
+        $temp.remove();
+    }
 </script>
-
 </body>
 </html>

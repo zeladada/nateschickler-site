@@ -30,7 +30,7 @@ var isMobileDevice = ((typeof window.orientation !== "undefined") || (navigator.
 var renderScale = 1 / 4;
 var framerate = 60;
 var renderOnMouseMove = false;
-var paused = false;
+var paused = true;
 var pausedTime;
 
 var leftKey = 37, leftA = 65, rightKey = 39, rightD = 68, space = 32;
@@ -150,7 +150,7 @@ function animate(time) {
             id = requestAnimationFrame(animate);
         }
 
-    }, 1000 / framerate);
+    }, 1000 / (framerate + 1));
 
     if (isMobileDevice) {
         mesh.rotation.x = time * 0.0005;
