@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:800);
+
 /*
  * Globals
  */
@@ -26,8 +28,8 @@ a:hover {
 
 html,
 body {
-    height: 100%;
     overflow-x: hidden;
+    background-color: #181818;
 }
 body {
     color: #fff;
@@ -55,10 +57,6 @@ body {
 /* Padding for spacing */
 .inner {
     padding: 30px;
-}
-
-#content {
-    background-color: #181818;
 }
 
 #display {
@@ -150,6 +148,7 @@ hr {
 
 .masthead-nav > li {
     display: inline-block;
+
 }
 .masthead-nav > li + li {
     margin-left: 20px;
@@ -157,7 +156,7 @@ hr {
 .masthead-nav > li > a {
     padding-right: 0;
     padding-left: 0;
-    font-size: 16px;
+    font-size: large;
     font-weight: bold;
     color: #fff; /* IE8 proofing */
     color: rgba(255,255,255,.75);
@@ -173,18 +172,9 @@ hr {
 .masthead-nav > .active > a:hover,
 .masthead-nav > .active > a:focus {
     color: #fff;
-    border-bottom-color: #fff;
+    border-bottom-color: transparent;
 }
 
-
-@media (min-width: 768px) {
-    .masthead-brand {
-        float: left;
-    }
-    .masthead-nav {
-        float: right;
-    }
-}
 
 /*
  * Cover
@@ -217,6 +207,12 @@ hr {
     .masthead-brand {
         margin-top: 10px;
         margin-bottom: 10px;
+        float: left;
+    }
+
+    .masthead-nav {
+        float: right;
+        padding-top: 5px;
     }
 
     .masthead {
@@ -225,6 +221,7 @@ hr {
         margin: 0 auto;
         top: 0;
         vertical-align: middle;
+
     }
     /* Handle the widths */
     .masthead,
@@ -242,7 +239,8 @@ hr {
 }
 
 #contact-me {
-    padding: 15px 30px 15px 15px;
+    padding: 5px 30px 15px 30px;
+    margin: 20px;
 }
 
 .footer {
@@ -250,86 +248,112 @@ hr {
     text-align: center;
 }
 
-.form-control{
-    background: transparent;
+
+.reveal-text,
+.reveal-text::after {
+    -webkit-animation-delay: 0.5s;
+    animation-delay: 0.5s;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+    -webkit-animation-duration: 800ms;
+    animation-duration: 800ms;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-timing-function: cubic-bezier(0.0, 0.0, 0.2, 1);
+    animation-timing-function: cubic-bezier(0.0, 0.0, 0.2, 1);
 }
 
-.form-group {
-    width: 100%;
-}
-
-form {
-    margin: 20px;
-}
-
-form > div {
+.reveal-text {
     position: relative;
-    overflow: hidden;
-}
-
-form input, form textarea {
-    width: 100%;
-    border: 2px solid gray;
-    background: none;
-    position: relative;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    padding: 8px 12px;
-    outline: 0;
-}
-
-form input:valid, form textarea:valid {
-    background: white;
-}
-
-form input:focus, form textarea:focus {
-    border-color: #357EBD;
-}
-
-form input:focus + label, form textarea:focus + label {
-    //background: #357EBD;
-    color: #357EBD;
-    font-size: 70%;
-    padding: 1px 8px;
-    height: 14px;
-    z-index: 2;
-    text-transform: uppercase;
-}
-
-form label {
-    -webkit-transition: background 0.2s, color 0.2s, top 0.2s, bottom 0.2s, right 0.2s, left 0.2s;
-    transition: background 0.2s, color 0.2s, top 0.2s, bottom 0.2s, right 0.2s, left 0.2s;
-    position: absolute;
-    color: #999;
-    padding: 7px 6px;
-    font-weight: normal;
-    background-color: transparent;
-}
-
-form textarea {
+    font-size: xx-large;
     display: block;
-    resize: vertical;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-animation-name: reveal-text;
+    animation-name: reveal-text;
+    color: #FFF;
+    white-space: nowrap;
+    cursor: default
+
 }
 
-form.go-bottom input, form.go-bottom textarea {
-    padding: 12px 12px 12px 12px;
-}
-
-form.go-bottom label {
+.reveal-text::after {
+    content: "";
+    position: absolute;
+    z-index: 999;
     top: 0;
-    bottom: 0;
     left: 0;
-    width: 100%;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(39, 218, 255);
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    -webkit-transform-origin: 0 50%;
+    transform-origin: 0 50%;
+    pointer-events: none;
+    -webkit-animation-name: revealer-text;
+    animation-name: revealer-text;
 }
 
-form.go-bottom input:focus, form.go-bottom textarea:focus {
-    padding: 4px 6px 20px 6px;
-    background-color: transparent;
-    color: white;
+@-webkit-keyframes reveal-text {
+    from {
+        -webkit-clip-path: inset(0 100% 0 0);
+        clip-path: inset(0 100% 0 0);
+    }
+    to {
+        -webkit-clip-path: inset(0 0 0 0);
+        clip-path: inset(0 0 0 0);
+    }
 }
 
-form.go-bottom input:focus + label, form.go-bottom textarea:focus + label {
-    top: 100%;
-    margin-top: -16px;
+@keyframes reveal-text {
+    from {
+        -webkit-clip-path: inset(0 100% 0 0);
+        clip-path: inset(0 100% 0 0);
+    }
+    to {
+        -webkit-clip-path: inset(0 0 0 0);
+        clip-path: inset(0 0 0 0);
+    }
+}
+
+@-webkit-keyframes revealer-text {
+    0%, 50% {
+        -webkit-transform-origin: 0 50%;
+        transform-origin: 0 50%;
+    }
+    60%, 100% {
+        -webkit-transform-origin: 100% 50%;
+        transform-origin: 100% 50%;
+    }
+    60% {
+        -webkit-transform: scaleX(1);
+        transform: scaleX(1);
+    }
+    100% {
+        -webkit-transform: scaleX(0);
+        transform: scaleX(0);
+    }
+}
+
+
+@keyframes revealer-text {
+    0%, 50% {
+        -webkit-transform-origin: 0 50%;
+        transform-origin: 0 50%;
+    }
+    60%, 100% {
+        -webkit-transform-origin: 100% 50%;
+        transform-origin: 100% 50%;
+    }
+    60% {
+        -webkit-transform: scaleX(1);
+        transform: scaleX(1);
+    }
+    100% {
+        -webkit-transform: scaleX(0);
+        transform: scaleX(0);
+    }
 }

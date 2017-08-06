@@ -22,21 +22,21 @@
 
 <body>
 
+
+
+
 <div class="site-wrapper">
 
-    <div class="site-wrapper-inner" id="content">
+    <div class="site-wrapper-inner">
 
         <div id="welcome">
-
             <div id="scrolling-header" class="cover-container">
                 <div class="masthead clearfix">
                     <div class="inner">
-                        <h3 class="masthead-brand">Nate Schickler</h3>
+                        <h3 class="masthead-brand reveal-text">Nate Schickler</h3>
                         <nav>
-                            <ul class="nav masthead-nav">
-                                <li class="scroll-down"><a href="#">About</a></li>
-                                <li><a href="#">Work</a></li>
-                                <li><a href="#">Contact</a></li>
+                            <ul class="nav masthead-nav reveal-text">
+                                <li id="scroll-down"><a href="#">About ⬇</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -49,7 +49,7 @@
 
         </div>
 
-        <div class="cover-container">
+        <div class="cover-container" id="content">
 
             <div class="inner cover">
                 <h1 class="cover-heading">Hello, World!</h1>
@@ -73,9 +73,9 @@
                     <div class="col-sm-12 col-lg-4">
                         <h2>My Skills</h2>
                         <dt>Programming</dt>
-                        <dd>C, Java, PHP, Javascript, HTML, CSS, Bash, Kotlin, MIPS32</dd>
+                        <dd>C, Java, PHP, Javascript, HTML, CSS, Bash, GLSL, Kotlin, MIPS32</dd>
                         <dt>Libraries, Tools, APIs, Etc.</dt>
-                        <dd>Three.js, jQuery, Bootstrap, libDGX, Box2D,
+                        <dd>Three.js, jQuery, Bootstrap, libGDX, Box2D,
                             Gradle, Maven, Java Native Access, Google Protobuf
                         </dd>
                         <dt>Programs</dt>
@@ -100,35 +100,14 @@
                 <div class="row align-items-start justify-content-center">
                     <form id="contact-me" role="form" class="col-xs-6.col-lg-4 go-bottom">
                         <h2>Contact Me</h2>
-                        <p id="p1" style="display: none">njs59@cornell.edu</p>
-                        <p>Send me an email via the form below or click the button to copy my email address to your clipboard.</p>
-                        <button class="btn btn-default" onclick="copyToClipboard('#p1')">Copy Email Address to Clipboard</button>
+                        <p id="p1" style="display: none">njs59@nobots.cornell.edu</p>
+                        <p>Get in touch!</p>
+                        <a class="btn btn-default" onclick="copyToClipboard('#p1')">Copy Email Address to Clipboard</a>
                         <br>- or -<br>
-                        <a class="btn btn-default" href="mailto:njs59@cornell.edu">Open in email cient</a>
+                        <a class="btn btn-default mail" href="mailto:njs59@nobots.cornell.edu">Open in email cient</a>
                         <br><br>
                         <hr>
-                        <div class="form-group">
-                            <input id="name" type="text" class="form-control" required>
-                            <label for="name">Name</label>
-                        </div>
-                        <div class="form-group">
-                            <input id="org" type="text" class="form-control" required>
-                            <label for="org">Organization / Company</label>
-                        </div>
-                        <div class="form-group">
-                            <input id="subject" type="text" class="form-control" required>
-                            <label for="subject">Subject</label>
-                        </div>
-                        <div class="form-group">
-                            <input id="email" type="tel" class="form-control" required>
-                            <label for="email">Email Address</label>
-                        </div>
-                        <div class="form-group">
-                            <textarea id="message" class="form-control" required></textarea>
-                            <label for="message">Message</label>
-                        </div>
                     </form>
-
                     <footer class="footer">
                         <p>Nathaniel Schickler, 2017</p>
                     </footer>
@@ -159,7 +138,6 @@ void main() {
                       1.0); // A
 }
 
-
 </script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -171,13 +149,32 @@ void main() {
 <script src="lib/stats.min.js"></script>
 <script src="main.js"></script>
 <script>
+    $("#scroll-down").click(function() {
+        var div = document.getElementById('content');
+        $('html, body').animate({
+            scrollTop : $("#content").offset().top - 200
+        }, 'slow');
+    });
+</script>
+<script>
+    $(window).scroll(function(){
+        $(".masthead").css("opacity", 1 - $(window).scrollTop() / 500);
+    });
+</script>
+<script>
     function copyToClipboard(element) {
         var $temp = $("<input>");
         $("body").append($temp);
-        $temp.val($(element).text()).select();
+        $temp.val($(element).text().replace('nobots.', '')).select();
         document.execCommand("copy");
         $temp.remove();
     }
+</script>
+<script>
+    $('.mail').on('click', function(){
+        var href = $(this).attr('href');
+        $(this).attr('href', href.replace('nobots.', ''));
+    });
 </script>
 </body>
 </html>

@@ -30,14 +30,14 @@ var isMobileDevice = ((typeof window.orientation !== "undefined") || (navigator.
 var renderScale = 1 / 4;
 var framerate = 60;
 var renderOnMouseMove = false;
-var paused = true;
+var paused = false;
 var pausedTime;
 
 var leftKey = 37, leftA = 65, rightKey = 39, rightD = 68, space = 32;
 
 function init() {
-    stats = new Stats();
-    stats.showPanel(0);
+    //stats = new Stats();
+    //stats.showPanel(0);
 
     container = document.getElementById('top-animation');
 
@@ -68,7 +68,8 @@ function init() {
             '<div id="display" class="clearfix">'
             + '<a id="leftButton" href="#" class="shaderControls btn btn-md btn-default"><span>Prev</span></a>'
             + '<a id="rightButton" href="#" class="shaderControls btn btn-md btn-default"><span>Next</span></a>'
-            + '<h4>Use the above buttons or arrow keys to load a new pixel shader.<br>Press space to pause.</h4>'
+            + '<h4>Use the above buttons or arrow keys to load a new pixel shader.'
+            + '<br>Press space to pause. Some shaders have mouse position input.</h4>'
             + '</div>'
         );
 
@@ -84,7 +85,7 @@ function init() {
 
     requestAnimationFrame(animate);
 
-    container.appendChild(stats.dom);
+    //container.appendChild(stats.dom);
 }
 
 function initShaders() {
@@ -142,7 +143,7 @@ function initCube() {
 }
 
 function animate(time) {
-    stats.update();
+    //stats.update();
 
     setTimeout(function () {
 
