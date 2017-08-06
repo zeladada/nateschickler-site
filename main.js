@@ -26,7 +26,7 @@ var shaderFileIndex = 5; //5
 var shaderFile = shaderFiles[shaderFileIndex];
 
 var startTime = Date.now();
-var isMobileDevice = !((typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1));
+var isMobileDevice = ((typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1));
 var renderScale = 1 / 4;
 var framerate = 60;
 var renderOnMouseMove = false;
