@@ -212,9 +212,9 @@ function onKeyDown(event) {
         onButtonPress('left');
     } else if (event.keyCode === rightD || event.keyCode === rightKey) {
         onButtonPress('right');
-    } else if (event.keyCode === space) {
-        event.preventDefault();
-        onButtonPress('pause');
+    // } else if (event.keyCode === space) {
+    //     event.preventDefault();
+    //     onButtonPress('pause');
     }
 }
 
@@ -233,12 +233,13 @@ function onButtonPress(arg) {
         case 'pause':
             if (paused) { //unpausing now, adjust start time for seamless rendering
                 startTime = startTime + (Date.now() - pausedTime);
-            } else { //pausing now, record when
-                pausedTime = Date.now();
             }
-
-            paused = !paused;
-            requestAnimationFrame(animate);
+            // else { //pausing now, record when
+            //     pausedTime = Date.now();
+            // }
+            //
+            // paused = !paused;
+            // requestAnimationFrame(animate);
     }
 }
 
