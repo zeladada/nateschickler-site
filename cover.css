@@ -86,7 +86,7 @@ hr {
     text-align: center;
     padding: 15px;
     cursor: pointer;
-    opacity: 0.25;
+    opacity: 0.75;
     display: inline;
     margin: 1px;
 }
@@ -356,4 +356,17 @@ hr {
         -webkit-transform: scaleX(0);
         transform: scaleX(0);
     }
+}
+
+#welcome {
+    opacity: 0;
+}
+
+#top-animation {
+    height: 100vh;
+}
+
+.reveal-text {
+    margin: 0;
+    padding: 0;
 }

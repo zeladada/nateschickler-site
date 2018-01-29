@@ -40,7 +40,7 @@ function init() {
     //stats = new Stats();
     //stats.showPanel(0);
 
-    container = document.getElementById('top-animation');
+    container = $('#top-animation');
 
     uniforms = {
         time: {value: 1.0},
@@ -58,15 +58,15 @@ function init() {
 
         $("#welcome").append(
             '<p id="display">View this page on a non-mobile device to see better animations!.</p>'
-        );
+        ).animate({"opacity": "1"}, 300);
 
-        initCube(container);
+        initCube();
     } else {
         console.log("loading shader");
         window.addEventListener('resize', onWindowResize, false);
-        container.addEventListener('mousemove', onMouseMove, false);
+        container.on('mousemove', onMouseMove, false);
         window.addEventListener('keydown', onKeyDown, false);
-        initShaders(container);
+        initShaders();
 
         $("#welcome").append(
             '<div id="display" class="clearfix">'
@@ -75,11 +75,12 @@ function init() {
             + '<h4>Use the above buttons or arrow keys to load a new pixel shader.'
             + '<br>Press space or click the animation to pause. Some shaders have mouse position input.</h4>'
             + '</div>'
-        );
+        ).animate({"opacity": "1"}, 700);
 
-        $("#top-animation").click(function () {
-            onButtonPress('pause');
-        });
+
+        // $("#top-animation").click(function () {
+        //     onButtonPress('pause');
+        // });
         $("#leftButton").click(function () {
             onButtonPress('left');
         });
@@ -128,7 +129,7 @@ function initShaders() {
     renderer = new THREE.WebGLRenderer();
     renderer.setPixelRatio(window.devicePixelRatio * renderScale);
     renderer.setSize(window.innerWidth, windowHeight);
-    container.appendChild(renderer.domElement);
+    container.append(renderer.domElement);
 }
 
 function initCube() {
@@ -146,7 +147,7 @@ function initCube() {
     renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
     renderer.setSize(window.innerWidth, windowHeight);
     renderer.setPixelRatio(window.devicePixelRatio * 0.5);
-    container.appendChild(renderer.domElement);
+    container.append(renderer.domElement);
 }
 
 function animate(time) {
