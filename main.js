@@ -72,8 +72,7 @@ function init() {
             '<div id="display" class="clearfix">'
             + '<a id="leftButton" href="#" class="shaderControls btn btn-md btn-default"><span>Prev</span></a>'
             + '<a id="rightButton" href="#" class="shaderControls btn btn-md btn-default"><span>Next</span></a>'
-            + '<h4>Use the above buttons or arrow keys to load a new pixel shader.'
-            + '<br>Press space or click the animation to pause. Some shaders have mouse position input.</h4>'
+            + '<h4>Use the above buttons or left and right arrow keys to load a new pixel shader.'
             + '</div>'
         ).animate({"opacity": "1"}, 700);
 
@@ -199,9 +198,9 @@ function onMouseMove(event) {
     // Update the mouse variable
     event.preventDefault();
     uniforms.mouse.value.x = (event.clientX / window.innerWidth) / 2;
-    //console.log("mouse x: " + uniforms.mouse.value.x);
+    console.log("mouse x: " + uniforms.mouse.value.x);
     uniforms.mouse.value.y = (-(event.clientY / windowHeight) + 1) / 2;
-    //console.log("mouse y: " + uniforms.mouse.value.y);
+    console.log("mouse y: " + uniforms.mouse.value.y);
 
     if (renderOnMouseMove) {
         render();
