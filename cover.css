@@ -243,6 +243,12 @@ hr {
     margin: 20px;
 }
 
+.center {
+    text-align: center;
+    align-items: center;
+    margin: auto;
+}
+
 .footer {
     margin: 0 auto;
     text-align: center;
@@ -364,6 +370,10 @@ hr {
 
 #top-animation {
     height: 100vh;
+}
+
+.btn-wide {
+    width: 100%;
 }
 
 .reveal-text {
