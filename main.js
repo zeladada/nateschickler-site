@@ -158,13 +158,16 @@ function initCube() {
 function animate(time) {
     //stats.update();
 
-    setTimeout(function () {
+    // can no longer set framerate because chrome disables setTimeout callbacks on scroll
+    // setTimeout(function () {
+    //
+    //     if (!paused) {
+    //         id = requestAnimationFrame(animate);
+    //     }
+    //
+    // }, 1000 / (framerate + 1));
 
-        if (!paused) {
-            id = requestAnimationFrame(animate);
-        }
-
-    }, 1000 / (framerate + 1));
+    id = requestAnimationFrame(animate);
 
     if (isMobileDevice) {
         mesh.rotation.x = time * 0.0005;
