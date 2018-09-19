@@ -22,88 +22,101 @@
 
     <div class="site-wrapper-inner">
 
-        <div id="welcome">
-            <div id="scrolling-header" class="cover-container">
-                <div class="masthead clearfix">
-                    <div id="menubar" class="inner">
-                        <h1 class="masthead-brand reveal-text"><a href="index.html">nateschickler.me</a></h1>
-                        <h1 id="scroll-down" class="masthead-nav reveal-text"><a href="#">about ⬇</a></h1>
+        <div class="cover-container overlay" id="content">
+            <div id="infoCol"
+                 class="inner cover row align-items-center justify-content-center col-xs-12 col-sm-5 col-lg-4 scrollbar"
+            >
+
+                <div id="welcome" class="inner cover">
+                    <div id="siteTitle">
+                        <h1><a class="reveal-text" href="index.html">nateschickler.me</a></h1>
+                    </div>
+                    <hr>
+                </div>
+
+
+                <div id="shaderInfo" class="inner cover"></div><hr>
+                <div class="inner cover">
+                    <h3 class="cover-heading">Hello, World!</h3>
+                    <p class="lead"> — My name is Nate Schickler.
+                        I'm a software developer and data scientist dedicated to creating meaningful software projects
+                        with cutting-edge technologies. This is my personal website.</p>
+                    <p class="lead">I am currently available for hire.</p>
+                    <hr>
+                </div>
+
+
+                <div class="inner cover">
+                    <h3 class="center">My Projects</h3><br>
+                    <!--<div class="center">-->
+                        <!--<p><a class="btn btn-default btn-wide" href="https://github.com/zeladada" role="button">-->
+                            <!--<img src="resources/github-256-black.gif" alt=""-->
+                                 <!--style="display: inline; width:32px; height:32px; margin:4px"> Github Profile-->
+                        <!--</a></p>-->
+                    <!--</div>-->
+
+                    <div class="list-group">
+                        <a href="https://itunes.apple.com/us/app/ithaca-transit-live-tracking/id1290883721"
+                           class="list-group-item list-group-item-action flex-column align-items-start">
+                            <div>
+                                <img src="resources/tcaticon.jpg" alt="" class="icon-round">
+                                <h4 style="display: inline"> Ithaca Transit</h4>
+                            </div>
+                            <p>
+                                Ithaca Transit is an end-to-end navigation service built for the TCAT bus service in Tompkins County, NY. Users can search for navigation to anywhere in Tompkins County, compare the fastest routes and transfer options, know exactly how late their bus is, see buses on the map in real time, and much more. A free and open-source app, Ithaca Transit offers a diverse range of features in a beautiful, clean interface to help get people where they need to go.
+                            </p>
+                        </a>
+                        <a href="https://github.com/zeladada" class="list-group-item list-group-item-action flex-column align-items-start">
+                            <div style="display: inline-table">
+                                <img src="resources/github-256-black.gif" alt=""class="icon-round" style="display: table-cell; float:left;">
+                                <p style="display: table-cell; vertical-align: middle; padding: 4px"> View the above open-source projects and more on my Github profile</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <hr>
+                </div>
+
+
+                <div class="inner cover center">
+                    <h3 class="center">LinkedIn and Resume</h3><br>
+                    <p><a class="btn btn-default btn-wide" href="https://www.linkedin.com/in/nate-schickler-07b3b9ba/"
+                          role="button">
+                        <img src="resources/linkedin-256.png" alt=""
+                             class="icon" style="height: 32px; width: 32px"> LinkedIn
+                    </a></p>
+                    <hr>
+                </div>
+
+
+                <form role="form" class="inner cover center">
+                    <h2 class="center">Inquiries</h2><br>
+                    <p id="p1" style="display: none">nate@nobots.schickler.org</p>
+                    <p id="contactMe" class="lead">Please feel free to contact me at
+                        <a class="mail btn-wide" style="text-decoration: underline"
+                           href="mailto:nate@nobots.schickler.org"></a>
+                    </p>
+                    <a class="btn btn-default btn-wide" onclick="copyToClipboard('#p1')">Copy Email Address to Clipboard</a>
+                    <hr>
+                </form>
+
+
+                <div class="row">
+                    <div class="cover-container">
+                        <div class="row align-items-start justify-content-center">
+                            <footer class="footer">
+                                <p>Nathaniel Schickler, 2017</p>
+                            </footer>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <div id="top-animation">
-
-            </div>
-
         </div>
 
-        <div class="cover-container" id="content">
-
-            <div class="inner cover">
-                <h1 class="cover-heading">Hello, World!</h1>
-                <p class="lead"> — My name is Nate Schickler.
-                    I am a junior at the Cornell University School of Arts and Sciences majoring in Information Science and minoring in Computer Science and Business. This is my personal website.</p>
-                <!--<p class="lead">I am currently available for hire.</p>-->
-            </div>
-
-            <br><hr><br>
-
-            <div class="container-fluid">
-                <div class="row align-items-start justify-content-center">
-                    <div class="col-sm-12 col-lg-4">
-                        <h2 class="center">My Skills</h2>
-                        <dt>Programming</dt>
-                        <dd>C, JavaScript, Java, SQL, HTML, CSS, jQuery, PHP, Bash, MIPS32</dd>
-                        <dt>Libraries, Tools, APIs, Etc.</dt>
-                        <dd>Three.js, jQuery, Bootstrap, libGDX, Box2D,
-                            Gradle, Maven, Java Native Access, Google Protobuf
-                        </dd>
-                        <dt>Programs</dt>
-                        <dd>JetBrains Suite (IDEA, WebStorm, CLion, PyCharm), Git, Eclipse, MAMP, VS Code, LaTeX</dd>
-                        <dt>Operating Systems</dt>
-                        <dd>macOS, Windows 10, Ubuntu Server, CentOS, Raspbian</dd>
-                        <dt>Adobe Creative Cloud</dt>
-                        <dd>Photoshop, Dreamweaver, Illustrator, etc.</dd>
-                    </div><!--/.col-xs-6.col-lg-4-->
-                    <div class="col-sm-12 col-lg-4">
-                        <h2 class="center">My Projects</h2><br>
-                        <p><a class="btn btn-default btn-wide" href="https://github.com/zeladada" role="button">
-                            <img src="resources/github-256-black.gif" alt=""
-                                 style="display: inline; width:32px; height:32px; margin:4px"> Github Profile
-                        </a></p>
-                    </div><!--/.col-xs-6.col-lg-4-->
-                    <div class="col-sm-12 col-lg-4">
-                        <h2 class="center">My Resume</h2><br>
-                        <p><a class="btn btn-default btn-wide" href="resources/Nathaniel%20Schickler%20Resume%20Mar%202018%203.pdf"
-                              role="button">
-                            <img src="resources/download-256.gif" alt=""
-                                 style="display: inline; width:32px; height:32px; margin:4px"> Download Resume (.pdf)
-                        </a></p>
-                    </div>
-                </div><!--/row-->
-            </div>
+        <div id="animationContainer">
+            <div id="top-animation"></div>
         </div>
 
-        <div id="bottom-section" class="row">
-            <div class="cover-container">
-                <div class="row align-items-start justify-content-center">
-                    <form id="contact-me" role="form" class="col-xs-6.col-lg-4 go-bottom">
-                        <h2>Contact Me</h2>
-                        <p id="p1" style="display: none">nate@nobots.schickler.org</p>
-                        <p>Get in touch!</p>
-                        <a class="btn btn-default" onclick="copyToClipboard('#p1')">Copy Email Address to Clipboard</a>
-                        <br>- or -<br>
-                        <a class="btn btn-default mail" href="mailto:nate@nobots.schickler.org">Open in email cient</a>
-                        <br><br>
-                        <hr>
-                    </form>
-                    <footer class="footer">
-                        <p>Nathaniel Schickler, 2017</p>
-                    </footer>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 
@@ -112,6 +125,7 @@
 void main() {
     gl_Position = vec4( position, 1.0 );
 }
+
 
 
 </script>
@@ -125,6 +139,7 @@ void main() {
                       1.0); // A
 }
 
+
 </script>
 
 <!-- Placed at the end of the document so the page loads faster -->
@@ -137,32 +152,41 @@ void main() {
 <script src="lib/stats.min.js"></script>
 <script src="main.js"></script>
 <script>
-    $("#scroll-down").click(function() {
-        var div = document.getElementById('content');
-        $('html, body').animate({
-            scrollTop : $("#content").offset().top - 200
-        }, 'slow');
+
+    $(document).ready(function () {
+
+        $("#scroll-down").click(function () {
+            var div = document.getElementById('content');
+            $('html, body').animate({
+                scrollTop: $("#content").offset().top - 200
+            }, 'slow');
+        });
+
+        $(window).scroll(function () {
+            $(".masthead").css("opacity", 1 - $(window).scrollTop() / 500);
+        });
+
+        // utility to prevent email address from showing in searches
+
+        function copyToClipboard(element) {
+            var $temp = $("<input>");
+            $("body").append($temp);
+            $temp.val($(element).text().replace('nobots.', '')).select();
+            document.execCommand("copy");
+            $temp.remove();
+        }
+
+        $('.mail').append(getMail()).on('click', function () {
+            var href = $(this).attr('href');
+            $(this).attr('href', href.replace('nobots.', ''));
+        });
+
+        function getMail() {
+            return $('#p1').text().replace('nobots.', '');
+        }
+
     });
-</script>
-<script>
-    $(window).scroll(function(){
-        $(".masthead").css("opacity", 1 - $(window).scrollTop() / 500);
-    });
-</script>
-<script>
-    function copyToClipboard(element) {
-        var $temp = $("<input>");
-        $("body").append($temp);
-        $temp.val($(element).text().replace('nobots.', '')).select();
-        document.execCommand("copy");
-        $temp.remove();
-    }
-</script>
-<script>
-    $('.mail').on('click', function(){
-        var href = $(this).attr('href');
-        $(this).attr('href', href.replace('nobots.', ''));
-    });
+
 </script>
 </body>
 </html>

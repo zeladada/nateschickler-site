@@ -26,7 +26,7 @@ var shaderFileIndex = 5; //5
 var shaderFile = shaderFiles[shaderFileIndex];
 
 var startTime = Date.now();
-var isMobileDevice = ((typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1));
+var isMobileDevice = (window.innerWidth < 720 && (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1));
 var renderScale = 1 / 4;
 var framerate = 60;
 var renderOnMouseMove = false;
@@ -49,6 +49,8 @@ function init() {
         backbuffer: {value: 0}
     };
 
+    windowHeight = window.innerHeight;
+
     if (isMobileDevice) {
         windowHeight = window.innerHeight/2;
         uniforms.resolution.value.y = windowHeight;
@@ -56,7 +58,7 @@ function init() {
         console.log("running cube animation");
         window.addEventListener('resize', onWindowResizeMobile, false);
 
-        $("#welcome").append(
+        $("#shaderInfo").append(
             '<p id="display">View this page on a non-mobile device to see better animations!.</p>'
         ).animate({"opacity": "1"}, 300);
 
@@ -68,18 +70,22 @@ function init() {
         window.addEventListener('keydown', onKeyDown, false);
         initShaders();
 
-        $("#welcome").append(
-            '<div id="display" class="clearfix">'
-            + '<a id="leftButton" href="#" class="shaderControls btn btn-md btn-default"><span>Prev</span></a>'
-            + '<a id="rightButton" href="#" class="shaderControls btn btn-md btn-default"><span>Next</span></a>'
-            + '<h4>Use the above buttons or left and right arrow keys to load a new pixel shader.'
-            + '</div>'
+        $("#animationContainer").append(
+            '<div id="display" class="clearfix"></div>'
         ).animate({"opacity": "1"}, 700);
 
+        $("#shaderInfo").append(
+            '<div id="shaderBtnContainer" class="center">'
+            + '<a id="leftButton" href="#" class="shaderControls btn btn-md btn-default"><span>Prev Shader</span></a>'
+            + '<a id="rightButton" href="#" class="shaderControls btn btn-md btn-default"><span>Next Shader</span></a>'
+            + '</div>'
+            + '<h4 class="lead center">Use the above buttons or click the animation to load a new pixel shader.</h4>'
+        );
 
-        // $("#top-animation").click(function () {
-        //     onButtonPress('pause');
-        // });
+
+        $("#top-animation").click(function () {
+            onButtonPress('right');
+        });
         $("#leftButton").click(function () {
             onButtonPress('left');
         });
@@ -92,7 +98,7 @@ function init() {
 
     requestAnimationFrame(animate);
 
-    //container.appendChild(stats.dom);
+    // container.appendChild(stats.dom);
 }
 
 function initShaders() {
@@ -292,4 +298,6 @@ function getRendererDirectives(shaderText) {
     }
 }
 
-init();
+$(document).ready(function () {
+    init();
+});
